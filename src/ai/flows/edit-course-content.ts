@@ -13,14 +13,12 @@ const EditCourseContentInputSchema = z.object({
   content: z.string().describe('The course content to be edited.'),
   instruction: z.string().describe('The instruction for editing the content (e.g., shorten the content, generate quiz questions, rewrite the paragraph in a different style).'),
 });
-export type EditCourseContentInput = z.infer<typeof EditCourseContentInputSchema>;
 
 const EditCourseContentOutputSchema = z.object({
   editedContent: z.string().describe('The edited course content.'),
 });
-type EditCourseContentOutput = z.infer<typeof EditCourseContentOutputSchema>;
 
-export async function editCourseContent(input: EditCourseContentInput): Promise<EditCourseContentOutput> {
+export async function editCourseContent(input: z.infer<typeof EditCourseContentInputSchema>): Promise<z.infer<typeof EditCourseContentOutputSchema>> {
   return editCourseContentFlow(input);
 }
 

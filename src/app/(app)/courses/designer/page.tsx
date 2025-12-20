@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { generateCourseOutline, type GenerateCourseOutlineInput } from '@/ai/flows/generate-course-outline';
-import { editCourseContent, type EditCourseContentInput } from '@/ai/flows/edit-course-content';
-import { generateRelevantMultimedia, type GenerateRelevantMultimediaOutput } from '@/ai/flows/generate-relevant-multimedia';
+import { generateCourseOutline } from '@/ai/flows/generate-course-outline';
+import { editCourseContent } from '@/ai/flows/edit-course-content';
+import { generateRelevantMultimedia } from '@/ai/flows/generate-relevant-multimedia';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -32,6 +32,13 @@ const outlineSchema = z.object({
 });
 
 type OutlineValues = z.infer<typeof outlineSchema>;
+type GenerateCourseOutlineInput = z.infer<typeof outlineSchema>;
+type EditCourseContentInput = { content: string; instruction: string };
+type GenerateRelevantMultimediaOutput = {
+    suggestedImages: { url: string; description: string; }[];
+    suggestedVideos: { url: string; title: string; }[];
+};
+
 
 export default function CourseDesignerPage() {
   const [isLoading, setIsLoading] = useState(false);

@@ -14,14 +14,12 @@ const SummarizeDocumentInputSchema = z.object({
     .string()
     .describe('The text content of the document to be summarized.'),
 });
-export type SummarizeDocumentInput = z.infer<typeof SummarizeDocumentInputSchema>;
 
 const SummarizeDocumentOutputSchema = z.object({
   summary: z.string().describe('A summarized version of the document.'),
 });
-type SummarizeDocumentOutput = z.infer<typeof SummarizeDocumentOutputSchema>;
 
-export async function summarizeDocument(input: SummarizeDocumentInput): Promise<SummarizeDocumentOutput> {
+export async function summarizeDocument(input: z.infer<typeof SummarizeDocumentInputSchema>): Promise<z.infer<typeof SummarizeDocumentOutputSchema>> {
   return summarizeDocumentFlow(input);
 }
 

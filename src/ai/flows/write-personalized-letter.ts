@@ -19,22 +19,16 @@ const WritePersonalizedLetterInputSchema = z.object({
   recipientName: z.string().describe("The name of the recipient."),
   letterBody: z.string().describe("The main content of the letter."),
 });
-export type WritePersonalizedLetterInput = z.infer<
-  typeof WritePersonalizedLetterInputSchema
->;
 
 const WritePersonalizedLetterOutputSchema = z.object({
   personalizedLetter: z
     .string()
     .describe("The AI-generated personalized letter."),
 });
-type WritePersonalizedLetterOutput = z.infer<
-  typeof WritePersonalizedLetterOutputSchema
->;
 
 export async function writePersonalizedLetter(
-  input: WritePersonalizedLetterInput
-): Promise<WritePersonalizedLetterOutput> {
+  input: z.infer<typeof WritePersonalizedLetterInputSchema>
+): Promise<z.infer<typeof WritePersonalizedLetterOutputSchema>> {
   return writePersonalizedLetterFlow(input);
 }
 

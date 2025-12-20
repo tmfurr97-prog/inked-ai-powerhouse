@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { generateBusinessForm, type GenerateBusinessFormInput } from '@/ai/flows/generate-business-form';
+import { generateBusinessForm } from '@/ai/flows/generate-business-form';
 import { useToast } from '@/hooks/use-toast';
 
 import { Button } from '@/components/ui/button';
@@ -38,6 +38,7 @@ const formSchema = z.object({
 
 
 type FormValues = z.infer<typeof formSchema>;
+type GenerateBusinessFormInput = z.infer<typeof formSchema>;
 
 const formTemplates = [
   {

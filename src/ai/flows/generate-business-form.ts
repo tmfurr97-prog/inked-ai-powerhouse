@@ -29,16 +29,14 @@ const GenerateBusinessFormInputSchema = z.object({
       'Information about the recipient (name, address) to be used if form style is "completed".'
     ),
 });
-export type GenerateBusinessFormInput = z.infer<typeof GenerateBusinessFormInputSchema>;
 
 const GenerateBusinessFormOutputSchema = z.object({
   formContent: z.string().describe('The generated business form content in Markdown format.'),
 });
-type GenerateBusinessFormOutput = z.infer<typeof GenerateBusinessFormOutputSchema>;
 
 export async function generateBusinessForm(
-  input: GenerateBusinessFormInput
-): Promise<GenerateBusinessFormOutput> {
+  input: z.infer<typeof GenerateBusinessFormInputSchema>
+): Promise<z.infer<typeof GenerateBusinessFormOutputSchema>> {
   return generateBusinessFormFlow(input);
 }
 

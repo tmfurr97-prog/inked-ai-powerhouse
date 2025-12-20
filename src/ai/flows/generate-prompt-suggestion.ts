@@ -12,15 +12,13 @@ import { z } from 'zod';
 const GeneratePromptSuggestionInputSchema = z.object({
   goal: z.string().describe('The user\'s simple goal or what they want the AI to do.'),
 });
-export type GeneratePromptSuggestionInput = z.infer<typeof GeneratePromptSuggestionInputSchema>;
 
 const GeneratePromptSuggestionOutputSchema = z.object({
   suggestedPrompt: z.string().describe('The improved, detailed, and optimized prompt for the user to copy.'),
 });
-export type GeneratePromptSuggestionOutput = z.infer<typeof GeneratePromptSuggestionOutputSchema>;
 
 
-export async function generatePromptSuggestion(input: GeneratePromptSuggestionInput): Promise<GeneratePromptSuggestionOutput> {
+export async function generatePromptSuggestion(input: z.infer<typeof GeneratePromptSuggestionInputSchema>): Promise<z.infer<typeof GeneratePromptSuggestionOutputSchema>> {
   return generatePromptSuggestionFlow(input);
 }
 

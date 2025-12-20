@@ -24,14 +24,12 @@ const GenerateCourseOutlineInputSchema = z.object({
     .default('Beginner')
     .describe('The target audience for the course (e.g., Beginner, Intermediate, Expert).'),
 });
-export type GenerateCourseOutlineInput = z.infer<typeof GenerateCourseOutlineInputSchema>;
 
 const GenerateCourseOutlineOutputSchema = z.object({
   outline: z.string().describe('The generated course outline.'),
 });
-type GenerateCourseOutlineOutput = z.infer<typeof GenerateCourseOutlineOutputSchema>;
 
-export async function generateCourseOutline(input: GenerateCourseOutlineInput): Promise<GenerateCourseOutlineOutput> {
+export async function generateCourseOutline(input: z.infer<typeof GenerateCourseOutlineInputSchema>): Promise<z.infer<typeof GenerateCourseOutlineOutputSchema>> {
   return generateCourseOutlineFlow(input);
 }
 

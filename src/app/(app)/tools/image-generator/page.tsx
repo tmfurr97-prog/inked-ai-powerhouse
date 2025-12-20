@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Image from 'next/image';
 import { useToast } from '@/hooks/use-toast';
-import { generateImage, type GenerateImageInput } from '@/ai/flows/generate-image-flow';
+import { generateImage } from '@/ai/flows/generate-image-flow';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,6 +20,7 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+type GenerateImageInput = z.infer<typeof formSchema>;
 
 export default function ImageGeneratorPage() {
   const [isLoading, setIsLoading] = useState(false);

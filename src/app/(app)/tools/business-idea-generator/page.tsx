@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { generateBusinessIdea, type GenerateBusinessIdeaOutput } from '@/ai/flows/generate-business-idea';
+import { generateBusinessIdea } from '@/ai/flows/generate-business-idea';
 import { useToast } from '@/hooks/use-toast';
 
 import { Button } from '@/components/ui/button';
@@ -21,6 +21,14 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+type GenerateBusinessIdeaOutput = {
+  ideas: {
+    title: string;
+    description: string;
+    firstSteps: string[];
+  }[];
+};
 
 export default function BusinessIdeaGeneratorPage() {
   const [isLoading, setIsLoading] = useState(false);

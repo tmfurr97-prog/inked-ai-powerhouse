@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { novelCoWriter, type NovelCoWriterInput } from '@/ai/flows/novel-co-writer-flow';
+import { novelCoWriter } from '@/ai/flows/novel-co-writer-flow';
 import { MarkdownDisplay } from '@/components/markdown-display';
 import { cn } from '@/lib/utils';
 
@@ -25,6 +25,12 @@ type HistoryItem = {
   text: string;
   prompt: string;
   timestamp: string;
+};
+
+type NovelCoWriterInput = {
+    task: 'generate' | 'continue' | 'reword' | 'enhance';
+    currentContent?: string;
+    instruction: string;
 };
 
 export default function NovelCoWriterPage() {

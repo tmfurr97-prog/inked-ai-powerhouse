@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Image from 'next/image';
-import { summarizeDocument, type SummarizeDocumentInput } from '@/ai/flows/summarize-document';
+import { summarizeDocument } from '@/ai/flows/summarize-document';
 import { extractTextFromImage } from '@/ai/flows/extract-text-from-image';
 import { useToast } from '@/hooks/use-toast';
 
@@ -27,6 +27,7 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+type SummarizeDocumentInput = z.infer<typeof formSchema>;
 
 export default function SummarizerPage() {
   const [isLoading, setIsLoading] = useState(false);

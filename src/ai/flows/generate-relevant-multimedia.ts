@@ -14,7 +14,6 @@ const GenerateRelevantMultimediaInputSchema = z.object({
     .string()
     .describe('The content of the lesson for which multimedia resources are to be generated.'),
 });
-export type GenerateRelevantMultimediaInput = z.infer<typeof GenerateRelevantMultimediaInputSchema>;
 
 const GenerateRelevantMultimediaOutputSchema = z.object({
   suggestedImages: z.array(
@@ -30,11 +29,10 @@ const GenerateRelevantMultimediaOutputSchema = z.object({
     })
   ).describe('A list of suggested videos.'),
 });
-export type GenerateRelevantMultimediaOutput = z.infer<typeof GenerateRelevantMultimediaOutputSchema>;
 
 export async function generateRelevantMultimedia(
-  input: GenerateRelevantMultimediaInput
-): Promise<GenerateRelevantMultimediaOutput> {
+  input: z.infer<typeof GenerateRelevantMultimediaInputSchema>
+): Promise<z.infer<typeof GenerateRelevantMultimediaOutputSchema>> {
   return generateRelevantMultimediaFlow(input);
 }
 

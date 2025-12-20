@@ -12,14 +12,12 @@ import { z } from 'genkit';
 const GenerateImageInputSchema = z.object({
   prompt: z.string().describe('A detailed text prompt describing the desired image.'),
 });
-export type GenerateImageInput = z.infer<typeof GenerateImageInputSchema>;
 
 const GenerateImageOutputSchema = z.object({
   imageUrl: z.string().describe('The data URI of the generated image.'),
 });
-export type GenerateImageOutput = z.infer<typeof GenerateImageOutputSchema>;
 
-export async function generateImage(input: GenerateImageInput): Promise<GenerateImageOutput> {
+export async function generateImage(input: z.infer<typeof GenerateImageInputSchema>): Promise<z.infer<typeof GenerateImageOutputSchema>> {
   return generateImageFlow(input);
 }
 

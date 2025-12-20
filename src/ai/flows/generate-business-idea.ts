@@ -14,7 +14,6 @@ const GenerateBusinessIdeaInputSchema = z.object({
     .string()
     .describe('A description of the user\'s interests, hobbies, and skills.'),
 });
-type GenerateBusinessIdeaInput = z.infer<typeof GenerateBusinessIdeaInputSchema>;
 
 const IdeaSchema = z.object({
     title: z.string().describe('The concise and catchy title of the business idea.'),
@@ -25,11 +24,10 @@ const IdeaSchema = z.object({
 const GenerateBusinessIdeaOutputSchema = z.object({
   ideas: z.array(IdeaSchema).describe('An array of 3 distinct and logical business ideas.'),
 });
-export type GenerateBusinessIdeaOutput = z.infer<typeof GenerateBusinessIdeaOutputSchema>;
 
 export async function generateBusinessIdea(
-  input: GenerateBusinessIdeaInput
-): Promise<GenerateBusinessIdeaOutput> {
+  input: z.infer<typeof GenerateBusinessIdeaInputSchema>
+): Promise<z.infer<typeof GenerateBusinessIdeaOutputSchema>> {
   return generateBusinessIdeaFlow(input);
 }
 

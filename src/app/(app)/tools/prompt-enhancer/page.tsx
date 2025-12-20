@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { generatePromptSuggestion, type GeneratePromptSuggestionOutput } from '@/ai/flows/generate-prompt-suggestion';
+import { generatePromptSuggestion } from '@/ai/flows/generate-prompt-suggestion';
 import { useToast } from '@/hooks/use-toast';
 
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,7 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+type GeneratePromptSuggestionInput = z.infer<typeof formSchema>;
 
 export default function PromptEnhancerPage() {
   const [isLoading, setIsLoading] = useState(false);
