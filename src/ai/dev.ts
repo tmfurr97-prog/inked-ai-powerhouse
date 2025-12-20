@@ -10,3 +10,4 @@ import '@/ai/flows/summarize-document.ts';
 import '@/aiflows/generate-business-form.ts';
 import '@/ai/flows/novel-co-writer-flow.ts';
 import '@/ai/flows/generate-business-idea.ts';
+import '@/ai/flows/generate-image-flow.ts';
