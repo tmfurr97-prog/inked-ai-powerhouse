@@ -4,19 +4,17 @@
  * @fileOverview An AI agent that helps users craft better prompts for other AI models.
  *
  * - generatePromptSuggestion - A function that takes a user's goal and suggests an improved prompt.
- * - GeneratePromptSuggestionInput - The input type for the function.
- * - GeneratePromptSuggestionOutput - The return type for the function.
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 
-export const GeneratePromptSuggestionInputSchema = z.object({
+const GeneratePromptSuggestionInputSchema = z.object({
   goal: z.string().describe('The user\'s simple goal or what they want the AI to do.'),
 });
-export type GeneratePromptSuggestionInput = z.infer<typeof GeneratePromptSuggestionInputSchema>;
+type GeneratePromptSuggestionInput = z.infer<typeof GeneratePromptSuggestionInputSchema>;
 
-export const GeneratePromptSuggestionOutputSchema = z.object({
+const GeneratePromptSuggestionOutputSchema = z.object({
   suggestedPrompt: z.string().describe('The improved, detailed, and optimized prompt for the user to copy.'),
 });
 export type GeneratePromptSuggestionOutput = z.infer<typeof GeneratePromptSuggestionOutputSchema>;
