@@ -14,7 +14,7 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import { AppLogo } from '@/components/app-logo';
-import { Briefcase, FileText, GraduationCap, Languages, LayoutDashboard, Lightbulb, LogIn, LogOut, Mail, MessageSquare, Palette, PenSquare, SwatchBook, UserPlus, Wand2 } from 'lucide-react';
+import { Briefcase, FileText, GraduationCap, Languages, LayoutDashboard, Lightbulb, LogIn, LogOut, Mail, MessageSquare, Palette, PenSquare, Star, SwatchBook, UserPlus, Wand2 } from 'lucide-react';
 import { useAuth, useUser } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from './ui/button';
@@ -107,20 +107,32 @@ export function SidebarNav() {
                 <span className="text-sm font-medium">Loading...</span>
             </div>
         ) : user ? (
-            <div className="flex items-center justify-between p-2 group-data-[state=expanded]:flex-row flex-col-reverse gap-2">
-                 <div className="flex items-center gap-2">
-                    <Avatar className="h-8 w-8">
-                        {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || 'User'} />}
-                        <AvatarFallback>{getInitials(user.displayName || user.email)}</AvatarFallback>
-                    </Avatar>
-                    <div className="group-data-[state=expanded]:block hidden">
-                        <p className="text-sm font-semibold truncate">{user.displayName || 'Anonymous'}</p>
-                        <p className="text-xs text-muted-foreground truncate">{user.email || 'No email'}</p>
-                    </div>
-                 </div>
-                <SidebarMenuButton tooltip={{ children: 'Logout', side: 'right' }} onClick={() => auth.signOut()} size="icon" className="h-8 w-8 shrink-0">
-                    <LogOut />
-                </SidebarMenuButton>
+            <div className="flex flex-col gap-2 p-2">
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton asChild tooltip={{children: 'Upgrade to Pro', side: 'right'}}>
+                            <Link href="/pro">
+                                <Star />
+                                <span>Go Pro</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+                <div className="flex items-center justify-between p-2 group-data-[state=expanded]:flex-row flex-col-reverse gap-2">
+                     <div className="flex items-center gap-2">
+                        <Avatar className="h-8 w-8">
+                            {user.photoURL && <AvatarImage src={user.photoURL} alt={user.displayName || 'User'} />}
+                            <AvatarFallback>{getInitials(user.displayName || user.email)}</AvatarFallback>
+                        </Avatar>
+                        <div className="group-data-[state=expanded]:block hidden">
+                            <p className="text-sm font-semibold truncate">{user.displayName || 'Anonymous'}</p>
+                            <p className="text-xs text-muted-foreground truncate">{user.email || 'No email'}</p>
+                        </div>
+                     </div>
+                    <SidebarMenuButton tooltip={{ children: 'Logout', side: 'right' }} onClick={() => auth.signOut()} size="icon" className="h-8 w-8 shrink-0">
+                        <LogOut />
+                    </SidebarMenuButton>
+                </div>
             </div>
         ) : (
              <SidebarMenu className="p-2">
