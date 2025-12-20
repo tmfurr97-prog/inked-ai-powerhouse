@@ -23,7 +23,18 @@ const formSchema = z.object({
   formStyle: z.enum(['fill-in', 'completed']),
   businessInformation: z.string().optional(),
   recipientInformation: z.string().optional(),
-});
+}).refine(
+  (data) => {
+    if (data.formStyle === 'completed') {
+      return !!data.businessInformation && !!data.recipientInformation;
+    }
+    return true;
+  },
+  {
+    message: 'Business and recipient information are required for a completed document.',
+    path: ['businessInformation'], // You can choose which field to show the error on
+  }
+);
 
 
 type FormValues = z.infer<typeof formSchema>;
@@ -73,15 +84,6 @@ export default function FormCreatorPage() {
     setIsLoading(true);
     setGeneratedForm(null);
     try {
-      if (values.formStyle === 'completed' && (!values.businessInformation || !values.recipientInformation)) {
-        toast({
-          title: 'Missing Information',
-          description: 'Business and recipient information are required for a completed document.',
-          variant: 'destructive',
-        });
-        setIsLoading(false);
-        return;
-      }
       const result = await generateBusinessForm(values);
       setGeneratedForm(result.formContent);
     } catch (error) {
