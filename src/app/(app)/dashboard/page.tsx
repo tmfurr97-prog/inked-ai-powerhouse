@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight, BookText, Briefcase, FileText, GraduationCap, Mail, SwatchBook } from 'lucide-react';
+import { ArrowRight, BookText, Briefcase, FileText, GraduationCap, Mail, MessageSquare, Palette, SwatchBook, Languages, PencilRuler, BookOpen } from 'lucide-react';
 
 export default function DashboardPage() {
   const features = [
@@ -49,6 +49,41 @@ export default function DashboardPage() {
       icon: SwatchBook,
       imageId: 'pdf-tools',
     },
+    {
+      title: 'AI Translator',
+      description: 'Transform your text instantly with our AI translator. Supports multiple languages.',
+      href: '/tools/translator',
+      icon: Languages,
+      imageId: 'ai-translator',
+    },
+    {
+      title: 'Chat with PDF',
+      description: 'Summarize, ask questions, extract key insights, and understand research from any PDF.',
+      href: '/tools/chat-pdf',
+      icon: MessageSquare,
+      imageId: 'chat-pdf',
+    },
+    {
+      title: 'Image Generator',
+      description: 'Create stunning AI art and images. Turn your visions into reality with a simple text prompt.',
+      href: '/tools/image-generator',
+      icon: Palette,
+      imageId: 'image-generator',
+    },
+    {
+      title: 'AI Writing Assistant',
+      description: 'Save time on proofreading, rephrasing, and perfecting your words with our advanced writing assistant.',
+      href: '/writer/refurr-ink',
+      icon: PencilRuler,
+      imageId: 'writing-assistant',
+    },
+    {
+      title: 'AI Reading Assistant',
+      description: 'Maximize your reading efficiency without sacrificing comprehension. Get summaries and key points.',
+      href: '/tools/summarizer',
+      icon: BookOpen,
+      imageId: 'reading-assistant',
+    },
   ];
 
   return (
@@ -62,7 +97,7 @@ export default function DashboardPage() {
         {features.map((feature) => {
           const placeholder = PlaceHolderImages.find(img => img.id === feature.imageId);
           return (
-            <Card key={feature.href} className="flex flex-col overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-lg">
+            <Card key={feature.title} className="flex flex-col overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-lg">
               <CardHeader className="flex-row items-start gap-4">
                 <div className="p-3 bg-primary/10 text-primary rounded-lg">
                     <feature.icon className="w-6 h-6" />

@@ -12,7 +12,7 @@ import {
   SidebarGroupLabel,
 } from '@/components/ui/sidebar';
 import { AppLogo } from '@/components/app-logo';
-import { BookText, Briefcase, FileText, GraduationCap, LayoutDashboard, Mail, PenTool, SwatchBook } from 'lucide-react';
+import { BookText, Briefcase, FileText, GraduationCap, LayoutDashboard, Mail, PenTool, SwatchBook, Languages, MessageSquare, Palette } from 'lucide-react';
 
 export function SidebarNav() {
   const pathname = usePathname();
@@ -38,6 +38,9 @@ export function SidebarNav() {
         { href: '/tools/summarizer', label: 'Summarizer', icon: FileText },
         { href: '/tools/forms', label: 'Form Creator', icon: Briefcase },
         { href: '/tools/pdf', label: 'PDF & Image Tools', icon: SwatchBook },
+        { href: '/tools/translator', label: 'Translator', icon: Languages },
+        { href: '/tools/chat-pdf', label: 'Chat with PDF', icon: MessageSquare },
+        { href: '/tools/image-generator', label: 'Image Generator', icon: Palette },
       ],
     },
     {
@@ -64,7 +67,7 @@ export function SidebarNav() {
                 <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === item.href}
+                    isActive={pathname.startsWith(item.href)}
                     tooltip={{ children: item.label, side: 'right' }}
                   >
                     <Link href={item.href}>
