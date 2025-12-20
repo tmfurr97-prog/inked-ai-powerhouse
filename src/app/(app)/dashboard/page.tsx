@@ -8,13 +8,6 @@ import { ArrowRight, BookText, Briefcase, FileText, GraduationCap, Mail, Message
 export default function DashboardPage() {
   const features = [
     {
-      title: 'Novel Co-writer',
-      description: 'Collaborate with AI to write novels, offering suggestions, plot twists, and character development.',
-      href: '/writer/novel',
-      icon: BookText,
-      imageId: 'novel-writer',
-    },
-    {
       title: 'Human-Like Letter Writer',
       description: 'Craft personalized letters with AI that mimics human writing styles for any tone or purpose.',
       href: '/writer/letter',

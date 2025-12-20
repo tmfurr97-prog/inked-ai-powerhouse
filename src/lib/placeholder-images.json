@@ -1,12 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "novel-writer",
-      "description": "A person writing in a notebook with a laptop nearby.",
-      "imageUrl": "https://images.unsplash.com/photo-1689023542259-d1e58b32a5a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3cml0aW5nJTIwbm92ZWx8ZW58MHx8fHwxNzY2MjUwMTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "writing novel"
-    },
-    {
       "id": "letter-writer",
       "description": "A vintage typewriter with a piece of paper.",
       "imageUrl": "https://images.unsplash.com/photo-1655856078476-6f2b6890edc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsZXR0ZXIlMjB0eXBld3JpdGVyfGVufDB8fHx8MTc2NjI1MDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080",

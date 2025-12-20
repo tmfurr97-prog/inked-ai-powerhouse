@@ -27,7 +27,6 @@ export function SidebarNav() {
     {
       group: 'Writer',
       items: [
-        { href: '/writer/novel', label: 'Novel Co-writer', icon: BookText },
         { href: '/writer/letter', label: 'Letter Writer', icon: Mail },
       ],
     },
