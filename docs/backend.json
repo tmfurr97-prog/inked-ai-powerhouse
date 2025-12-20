@@ -1,0 +1,406 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the AI Powerhouse platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "name": {
+          "type": "string",
+          "description": "User's full name."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "name",
+        "createdAt"
+      ]
+    },
+    "Novel": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Novel",
+      "type": "object",
+      "description": "Represents a novel being co-written using the AI Powerhouse platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the novel."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Novel)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the novel."
+        },
+        "genre": {
+          "type": "string",
+          "description": "Genre of the novel."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the novel was started.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "title",
+        "genre",
+        "createdAt"
+      ]
+    },
+    "NovelChapter": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "NovelChapter",
+      "type": "object",
+      "description": "Represents a chapter of a novel.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the chapter."
+        },
+        "novelId": {
+          "type": "string",
+          "description": "Reference to Novel. (Relationship: Novel 1:N NovelChapter)"
+        },
+        "chapterNumber": {
+          "type": "number",
+          "description": "The chapter number in the novel."
+        },
+        "content": {
+          "type": "string",
+          "description": "The content of the chapter."
+        }
+      },
+      "required": [
+        "id",
+        "novelId",
+        "chapterNumber",
+        "content"
+      ]
+    },
+    "BusinessFormTemplate": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BusinessFormTemplate",
+      "type": "object",
+      "description": "Represents a template for generating business forms.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the form template."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N BusinessFormTemplate)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the form template (e.g., Invoice, Contract)."
+        },
+        "fields": {
+          "type": "string",
+          "description": "JSON string defining the fields and structure of the form template."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the form template was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "name",
+        "fields",
+        "createdAt"
+      ]
+    },
+    "Course": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Course",
+      "type": "object",
+      "description": "Represents a course designed using the SME Course Designer.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the course."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Course)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the course."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the course content."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the course was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "title",
+        "description",
+        "createdAt"
+      ]
+    },
+    "Module": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Module",
+      "type": "object",
+      "description": "Represents a module within a course.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the module."
+        },
+        "courseId": {
+          "type": "string",
+          "description": "Reference to Course. (Relationship: Course 1:N Module)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the module."
+        },
+        "order": {
+          "type": "number",
+          "description": "The order of the module within the course."
+        }
+      },
+      "required": [
+        "id",
+        "courseId",
+        "title",
+        "order"
+      ]
+    },
+    "Lesson": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Lesson",
+      "type": "object",
+      "description": "Represents a lesson within a module.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the lesson."
+        },
+        "moduleId": {
+          "type": "string",
+          "description": "Reference to Module. (Relationship: Module 1:N Lesson)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the lesson."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the lesson (e.g., text, HTML)."
+        },
+        "order": {
+          "type": "number",
+          "description": "The order of the lesson within the module."
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "URL of video to show for the lesson."
+        }
+      },
+      "required": [
+        "id",
+        "moduleId",
+        "title",
+        "content",
+        "order"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. Path-based ownership enforces that only the user can access their own profile.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/novels/{novelId}",
+        "definition": {
+          "entityName": "Novel",
+          "schema": {
+            "$ref": "#/backend/entities/Novel"
+          },
+          "description": "Stores novels created by the user. Path-based ownership enforces that only the user can access their own novels.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "novelId",
+              "description": "The unique identifier of the novel."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/novels/{novelId}/chapters/{chapterId}",
+        "definition": {
+          "entityName": "NovelChapter",
+          "schema": {
+            "$ref": "#/backend/entities/NovelChapter"
+          },
+          "description": "Stores chapters for a specific novel. Path-based ownership enforces that only the owner of the novel can access its chapters.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "novelId",
+              "description": "The unique identifier of the novel."
+            },
+            {
+              "name": "chapterId",
+              "description": "The unique identifier of the chapter."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/businessFormTemplates/{formId}",
+        "definition": {
+          "entityName": "BusinessFormTemplate",
+          "schema": {
+            "$ref": "#/backend/entities/BusinessFormTemplate"
+          },
+          "description": "Stores business form templates created by the user. Path-based ownership enforces that only the user can access their own form templates.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "formId",
+              "description": "The unique identifier of the business form template."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/courses/{courseId}",
+        "definition": {
+          "entityName": "Course",
+          "schema": {
+            "$ref": "#/backend/entities/Course"
+          },
+          "description": "Stores courses created by the user. Path-based ownership enforces that only the user can access their own courses.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "courseId",
+              "description": "The unique identifier of the course."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/courses/{courseId}/modules/{moduleId}",
+        "definition": {
+          "entityName": "Module",
+          "schema": {
+            "$ref": "#/backend/entities/Module"
+          },
+          "description": "Stores modules within a specific course. Path-based ownership enforces that only the owner of the course can access its modules.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "courseId",
+              "description": "The unique identifier of the course."
+            },
+            {
+              "name": "moduleId",
+              "description": "The unique identifier of the module."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/courses/{courseId}/modules/{moduleId}/lessons/{lessonId}",
+        "definition": {
+          "entityName": "Lesson",
+          "schema": {
+            "$ref": "#/backend/entities/Lesson"
+          },
+          "description": "Stores lessons within a specific module. Path-based ownership enforces that only the owner of the course can access its lessons.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "courseId",
+              "description": "The unique identifier of the course."
+            },
+            {
+              "name": "moduleId",
+              "description": "The unique identifier of the module."
+            },
+            {
+              "name": "lessonId",
+              "description": "The unique identifier of the lesson."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to provide a secure and scalable data model for the AI Powerhouse platform. It utilizes path-based ownership for user-generated content (Novels, BusinessFormTemplates, Courses) to simplify security rules and ensure data isolation. Subcollections are used to represent one-to-many relationships (e.g., Novel to NovelChapter, Course to Module to Lesson). Authorization Independence is achieved through path-based ownership; each document's access control is determined by its location in the hierarchy (e.g., only the user with `userId` can access `/users/{userId}/novels/{novelId}`). This eliminates the need for complex `get()` calls in security rules, enabling atomic operations and improving performance. Additionally, QAPs are supported via structural segregation, where user-owned data is stored under the `/users/{userId}` path, allowing for secure `list` operations restricted to the authenticated user. Denormalization is not explicitly required here because path-based ownership provides sufficient authorization context without needing to duplicate data."
+  }
+}
