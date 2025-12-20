@@ -10,17 +10,29 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Skeleton } from '@/components/ui/skeleton';
 import { MarkdownDisplay } from '@/components/markdown-display';
 import { Loader2, Clipboard } from 'lucide-react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { cn } from '@/lib/utils';
+
 
 const formSchema = z.object({
   formDescription: z.string().min(10, 'Please provide a more detailed description of the form.'),
+  formStyle: z.enum(['fill-in', 'completed']),
   businessInformation: z.string().optional(),
   recipientInformation: z.string().optional(),
+}).refine(data => {
+    if (data.formStyle === 'completed' && (!data.businessInformation || !data.recipientInformation)) {
+        return false;
+    }
+    return true;
+}, {
+    message: 'Business and recipient information are required for a completed document.',
+    path: ['formStyle'],
 });
+
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -33,10 +45,13 @@ export default function FormCreatorPage() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       formDescription: '',
+      formStyle: 'fill-in',
       businessInformation: '',
       recipientInformation: '',
     },
   });
+  
+  const formStyle = form.watch('formStyle');
 
   const onSubmit = async (values: FormValues) => {
     setIsLoading(true);
@@ -72,52 +87,90 @@ export default function FormCreatorPage() {
 
       <div className="grid md:grid-cols-2 gap-8 items-start">
         <Card>
-          <CardHeader>
-            <CardTitle>Form Details</CardTitle>
-            <CardDescription>Provide a detailed description of the form, and optionally, your business info to pre-fill.</CardDescription>
-          </CardHeader>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
+              <CardHeader>
+                <CardTitle>Form Details</CardTitle>
+                <CardDescription>Describe the form and choose whether you want a template or a completed document.</CardDescription>
+              </CardHeader>
               <CardContent className="space-y-4">
                 <FormField
                   control={form.control}
                   name="formDescription"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Form Description</FormLabel>
+                      <FormLabel>1. Form Description</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="e.g., A simple invoice with fields for item, quantity, price, and total. Include a space for a logo..." className="min-h-[150px]" {...field} />
+                        <Textarea placeholder="e.g., A simple invoice with fields for item, quantity, price, and total. Include a space for a logo..." className="min-h-[120px]" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+                
                 <FormField
-                  control={form.control}
-                  name="businessInformation"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Business Information (Optional)</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="e.g., My Company LLC, 123 Main St, Anytown, USA" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                    control={form.control}
+                    name="formStyle"
+                    render={({ field }) => (
+                        <FormItem className="space-y-3">
+                        <FormLabel>2. Document Style</FormLabel>
+                        <FormControl>
+                            <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex flex-col space-y-1"
+                            >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                <RadioGroupItem value="fill-in" />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                Generate a fill-in document
+                                </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                <RadioGroupItem value="completed" />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                Generate a completed document
+                                </FormLabel>
+                            </FormItem>
+                            </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
                 />
-                <FormField
-                  control={form.control}
-                  name="recipientInformation"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Who the form is going to (Optional)</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="e.g., John Doe, 456 Oak Ave, Otherville, USA" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+
+                <div className={cn('space-y-4 transition-opacity', formStyle === 'fill-in' && 'opacity-50 pointer-events-none')}>
+                    <FormField
+                    control={form.control}
+                    name="businessInformation"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>3. Your Business Information</FormLabel>
+                        <FormControl>
+                            <Textarea disabled={formStyle === 'fill-in'} placeholder="e.g., My Company LLC, 123 Main St, Anytown, USA" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                    <FormField
+                    control={form.control}
+                    name="recipientInformation"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>4. Recipient's Information</FormLabel>
+                        <FormControl>
+                            <Textarea disabled={formStyle === 'fill-in'} placeholder="e.g., John Doe, 456 Oak Ave, Otherville, USA" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                </div>
               </CardContent>
               <CardFooter>
                 <Button type="submit" disabled={isLoading} className="w-full">

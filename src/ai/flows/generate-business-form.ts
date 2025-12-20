@@ -15,19 +15,20 @@ const GenerateBusinessFormInputSchema = z.object({
   formDescription: z
     .string()
     .describe(
-      'Detailed description of the desired business form, including its purpose, required fields, and any specific formatting preferences.'
+      'Detailed description of the desired business form, including its purpose and required fields.'
     ),
+  formStyle: z.enum(['fill-in', 'completed']).describe("The style of the form to generate: 'fill-in' for a blank template, or 'completed' for a pre-filled document."),
   businessInformation: z
     .string()
     .optional()
     .describe(
-      'Optional information about the business, such as name, address, and contact details, to be pre-filled in the form.'
+      'Information about the business (name, address, contact details) to be used if form style is "completed".'
     ),
   recipientInformation: z
     .string()
     .optional()
     .describe(
-      'Optional information about who the form is going to, such as their name and address.'
+      'Information about the recipient (name, address) to be used if form style is "completed".'
     ),
 });
 export type GenerateBusinessFormInput = z.infer<typeof GenerateBusinessFormInputSchema>;
@@ -47,18 +48,26 @@ const generateBusinessFormPrompt = ai.definePrompt({
   name: 'generateBusinessFormPrompt',
   input: {schema: GenerateBusinessFormInputSchema},
   output: {schema: GenerateBusinessFormOutputSchema},
-  prompt: `You are an AI assistant specialized in generating business forms.
+  prompt: `You are an AI assistant specialized in generating professional business forms in markdown format.
 
-  Based on the provided description and business information, create a professional and well-formatted business form.
+  **Form Description:**
+  {{{formDescription}}}
 
-  Description: {{{formDescription}}}
-  Business Information: {{{businessInformation}}}
-  Recipient Information: {{{recipientInformation}}}
+  {{#if (eq formStyle "completed")}}
+  **Task:** Generate a COMPLETED business form. Use the following information to fill in all relevant fields. The form should look like a finished document.
 
-  Ensure the generated form is clear, concise, and suitable for its intended purpose.
-  The form should be in a plain text format with proper sections and spacing.
-  If the description is vague, use your best judgement to come up with a reasonable result.
-  Use a markdown format. Don't use HTML.
+  **Business Information:**
+  {{{businessInformation}}}
+
+  **Recipient Information:**
+  {{{recipientInformation}}}
+  {{else}}
+  **Task:** Generate a BLANK, FILL-IN-THE-BLANK business form that can be printed or filled out later. Use underscores, brackets, or blank lines (e.g., "Name: __________") for fields that need to be completed. DO NOT use the business or recipient information, even if it is provided.
+  {{/if}}
+
+  Ensure the generated markdown form is clear, well-formatted, and suitable for its intended purpose.
+  If the description is vague, use your best judgement to create a logical and common business form.
+  Do not use HTML.
   `,
 });
 
