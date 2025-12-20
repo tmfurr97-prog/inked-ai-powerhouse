@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { novelCoWriter, NovelCoWriterInput } from '@/ai/flows/novel-co-writer-flow';
+import { novelCoWriter, type NovelCoWriterInput } from '@/ai/flows/novel-co-writer-flow';
 import { MarkdownDisplay } from '@/components/markdown-display';
 import { cn } from '@/lib/utils';
 
