@@ -140,6 +140,10 @@ export default function SummarizerPage() {
     }
   };
 
+  function cn(arg0: string, arg1: string | boolean): string | undefined {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <div className="space-y-6">
       <div>
