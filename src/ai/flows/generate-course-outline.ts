@@ -4,8 +4,6 @@
  * @fileOverview This file defines a Genkit flow for generating a course outline from uploaded SME content.
  *
  * generateCourseOutline - A function that takes SME content and user parameters to generate a course outline.
- * GenerateCourseOutlineInput - The input type for the generateCourseOutline function.
- * GenerateCourseOutlineOutput - The return type for the generateCourseOutline function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -31,7 +29,7 @@ export type GenerateCourseOutlineInput = z.infer<typeof GenerateCourseOutlineInp
 const GenerateCourseOutlineOutputSchema = z.object({
   outline: z.string().describe('The generated course outline.'),
 });
-export type GenerateCourseOutlineOutput = z.infer<typeof GenerateCourseOutlineOutputSchema>;
+type GenerateCourseOutlineOutput = z.infer<typeof GenerateCourseOutlineOutputSchema>;
 
 export async function generateCourseOutline(input: GenerateCourseOutlineInput): Promise<GenerateCourseOutlineOutput> {
   return generateCourseOutlineFlow(input);

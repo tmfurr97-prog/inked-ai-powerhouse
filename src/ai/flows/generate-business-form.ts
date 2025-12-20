@@ -4,8 +4,6 @@
  * @fileOverview Flow for generating customized business forms based on user descriptions.
  *
  * - generateBusinessForm - A function that generates a business form.
- * - GenerateBusinessFormInput - The input type for the generateBusinessForm function.
- * - GenerateBusinessFormOutput - The return type for the generateBusinessForm function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -36,7 +34,7 @@ export type GenerateBusinessFormInput = z.infer<typeof GenerateBusinessFormInput
 const GenerateBusinessFormOutputSchema = z.object({
   formContent: z.string().describe('The generated business form content in Markdown format.'),
 });
-export type GenerateBusinessFormOutput = z.infer<typeof GenerateBusinessFormOutputSchema>;
+type GenerateBusinessFormOutput = z.infer<typeof GenerateBusinessFormOutputSchema>;
 
 export async function generateBusinessForm(
   input: GenerateBusinessFormInput

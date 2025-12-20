@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Image from 'next/image';
-import { summarizeDocument } from '@/ai/flows/summarize-document';
+import { summarizeDocument, type SummarizeDocumentInput } from '@/ai/flows/summarize-document';
 import { extractTextFromImage } from '@/ai/flows/extract-text-from-image';
 import { useToast } from '@/hooks/use-toast';
 
@@ -123,7 +123,7 @@ export default function SummarizerPage() {
   };
 
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: SummarizeDocumentInput) => {
     setIsLoading(true);
     setSummary(null);
     try {

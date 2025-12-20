@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { generateBusinessForm } from '@/ai/flows/generate-business-form';
+import { generateBusinessForm, type GenerateBusinessFormInput } from '@/ai/flows/generate-business-form';
 import { useToast } from '@/hooks/use-toast';
 
 import { Button } from '@/components/ui/button';
@@ -80,7 +80,7 @@ export default function FormCreatorPage() {
   
   const formStyle = form.watch('formStyle');
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: GenerateBusinessFormInput) => {
     setIsLoading(true);
     setGeneratedForm(null);
     try {

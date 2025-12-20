@@ -4,19 +4,17 @@
  * @fileOverview A flow for generating an image from a text prompt.
  * 
  * - generateImage - A function that takes a text prompt and returns an image.
- * - GenerateImageInput - The input type for the generateImage function.
- * - GenerateImageOutput - The return type for the generateImage function.
  */
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-export const GenerateImageInputSchema = z.object({
+const GenerateImageInputSchema = z.object({
   prompt: z.string().describe('A detailed text prompt describing the desired image.'),
 });
 export type GenerateImageInput = z.infer<typeof GenerateImageInputSchema>;
 
-export const GenerateImageOutputSchema = z.object({
+const GenerateImageOutputSchema = z.object({
   imageUrl: z.string().describe('The data URI of the generated image.'),
 });
 export type GenerateImageOutput = z.infer<typeof GenerateImageOutputSchema>;

@@ -4,8 +4,6 @@
  * @fileOverview AI agent for generating personalized letters with specified tone and purpose.
  *
  * - writePersonalizedLetter - Function to generate a personalized letter.
- * - WritePersonalizedLetterInput - Input type for the writePersonalizedLetter function.
- * - WritePersonalizedLetterOutput - Output type for the writePersonalizedLetter function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -30,7 +28,7 @@ const WritePersonalizedLetterOutputSchema = z.object({
     .string()
     .describe("The AI-generated personalized letter."),
 });
-export type WritePersonalizedLetterOutput = z.infer<
+type WritePersonalizedLetterOutput = z.infer<
   typeof WritePersonalizedLetterOutputSchema
 >;
 

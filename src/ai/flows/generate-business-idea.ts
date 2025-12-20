@@ -4,8 +4,6 @@
  * @fileOverview Flow for generating customized business ideas based on user interests.
  *
  * - generateBusinessIdea - A function that generates business ideas.
- * - GenerateBusinessIdeaInput - The input type for the generateBusinessIdea function.
- * - GenerateBusinessIdeaOutput - The return type for the generateBusinessIdea function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -16,7 +14,7 @@ const GenerateBusinessIdeaInputSchema = z.object({
     .string()
     .describe('A description of the user\'s interests, hobbies, and skills.'),
 });
-export type GenerateBusinessIdeaInput = z.infer<typeof GenerateBusinessIdeaInputSchema>;
+type GenerateBusinessIdeaInput = z.infer<typeof GenerateBusinessIdeaInputSchema>;
 
 const IdeaSchema = z.object({
     title: z.string().describe('The concise and catchy title of the business idea.'),

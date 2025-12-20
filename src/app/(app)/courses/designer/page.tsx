@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import { generateCourseOutline } from '@/ai/flows/generate-course-outline';
-import { editCourseContent } from '@/ai/flows/edit-course-content';
-import { generateRelevantMultimedia } from '@/ai/flows/generate-relevant-multimedia';
+import { generateCourseOutline, type GenerateCourseOutlineInput } from '@/ai/flows/generate-course-outline';
+import { editCourseContent, type EditCourseContentInput } from '@/ai/flows/edit-course-content';
+import { generateRelevantMultimedia, type GenerateRelevantMultimediaOutput } from '@/ai/flows/generate-relevant-multimedia';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -36,7 +36,7 @@ type OutlineValues = z.infer<typeof outlineSchema>;
 export default function CourseDesignerPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [courseOutline, setCourseOutline] = useState<string | null>(null);
-  const [multimedia, setMultimedia] = useState<Awaited<ReturnType<typeof generateRelevantMultimedia>> | null>(null);
+  const [multimedia, setMultimedia] = useState<GenerateRelevantMultimediaOutput | null>(null);
   const { toast } = useToast();
 
   const form = useForm<OutlineValues>({
@@ -50,7 +50,7 @@ export default function CourseDesignerPage() {
     },
   });
 
-  const onOutlineSubmit = async (values: OutlineValues) => {
+  const onOutlineSubmit = async (values: GenerateCourseOutlineInput) => {
     setIsLoading(true);
     setCourseOutline(null);
     try {

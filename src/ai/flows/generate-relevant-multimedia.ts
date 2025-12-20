@@ -4,8 +4,6 @@
  * @fileOverview Generates relevant multimedia resources (images and videos) for a given lesson.
  *
  * - generateRelevantMultimedia - A function that orchestrates the process of suggesting images and videos.
- * - GenerateRelevantMultimediaInput - The input type for the generateRelevantMultimedia function.
- * - GenerateRelevantMultimediaOutput - The return type for the generateRelevantMultimedia function.
  */
 
 import {ai} from '@/ai/genkit';

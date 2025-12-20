@@ -4,8 +4,6 @@
  * @fileOverview Summarizes a document, highlighting key terms and conditions.
  *
  * - summarizeDocument - A function that summarizes a document.
- * - SummarizeDocumentInput - The input type for the summarizeDocument function.
- * - SummarizeDocumentOutput - The return type for the summarizeDocument function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -21,7 +19,7 @@ export type SummarizeDocumentInput = z.infer<typeof SummarizeDocumentInputSchema
 const SummarizeDocumentOutputSchema = z.object({
   summary: z.string().describe('A summarized version of the document.'),
 });
-export type SummarizeDocumentOutput = z.infer<typeof SummarizeDocumentOutputSchema>;
+type SummarizeDocumentOutput = z.infer<typeof SummarizeDocumentOutputSchema>;
 
 export async function summarizeDocument(input: SummarizeDocumentInput): Promise<SummarizeDocumentOutput> {
   return summarizeDocumentFlow(input);

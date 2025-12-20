@@ -12,7 +12,7 @@ import { z } from 'zod';
 const GeneratePromptSuggestionInputSchema = z.object({
   goal: z.string().describe('The user\'s simple goal or what they want the AI to do.'),
 });
-type GeneratePromptSuggestionInput = z.infer<typeof GeneratePromptSuggestionInputSchema>;
+export type GeneratePromptSuggestionInput = z.infer<typeof GeneratePromptSuggestionInputSchema>;
 
 const GeneratePromptSuggestionOutputSchema = z.object({
   suggestedPrompt: z.string().describe('The improved, detailed, and optimized prompt for the user to copy.'),

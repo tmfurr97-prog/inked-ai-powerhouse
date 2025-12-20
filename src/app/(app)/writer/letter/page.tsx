@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { writePersonalizedLetter } from '@/ai/flows/write-personalized-letter';
+import { writePersonalizedLetter, type WritePersonalizedLetterInput } from '@/ai/flows/write-personalized-letter';
 import { useToast } from '@/hooks/use-toast';
 
 import { Button } from '@/components/ui/button';
@@ -41,7 +41,7 @@ export default function LetterWriterPage() {
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: WritePersonalizedLetterInput) => {
     setIsLoading(true);
     setGeneratedLetter(null);
     try {

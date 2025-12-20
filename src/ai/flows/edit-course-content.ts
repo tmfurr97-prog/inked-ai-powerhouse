@@ -4,8 +4,6 @@
  * @fileOverview Provides AI-powered editing tools to refine course content.
  *
  * - editCourseContent - A function that edits course content based on user instructions.
- * - EditCourseContentInput - The input type for the editCourseContent function.
- * - EditCourseContentOutput - The return type for the editCourseContent function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -20,7 +18,7 @@ export type EditCourseContentInput = z.infer<typeof EditCourseContentInputSchema
 const EditCourseContentOutputSchema = z.object({
   editedContent: z.string().describe('The edited course content.'),
 });
-export type EditCourseContentOutput = z.infer<typeof EditCourseContentOutputSchema>;
+type EditCourseContentOutput = z.infer<typeof EditCourseContentOutputSchema>;
 
 export async function editCourseContent(input: EditCourseContentInput): Promise<EditCourseContentOutput> {
   return editCourseContentFlow(input);
