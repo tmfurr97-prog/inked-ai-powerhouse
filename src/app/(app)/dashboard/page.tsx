@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ArrowRight, BookText, Briefcase, FileText, GraduationCap, Mail } from 'lucide-react';
+import { ArrowRight, BookText, Briefcase, FileText, GraduationCap, Mail, SwatchBook } from 'lucide-react';
 
 export default function DashboardPage() {
   const features = [
@@ -41,6 +41,13 @@ export default function DashboardPage() {
       href: '/courses/designer',
       icon: GraduationCap,
       imageId: 'course-designer',
+    },
+    {
+      title: 'PDF & Image Tools',
+      description: 'A full suite of tools to merge, split, compress, and convert your PDF and image files.',
+      href: '/tools/pdf',
+      icon: SwatchBook,
+      imageId: 'pdf-tools',
     },
   ];
 

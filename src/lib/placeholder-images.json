@@ -29,6 +29,12 @@
       "description": "A digital screen showing a course structure or mind map.",
       "imageUrl": "https://images.unsplash.com/photo-1697448524524-99416ed5dbba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb3Vyc2UlMjBkZXNpZ258ZW58MHx8fHwxNzY2MjE2MjIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "course design"
+    },
+    {
+      "id": "pdf-tools",
+      "description": "A collection of colorful PDF icons and symbols arranged neatly.",
+      "imageUrl": "https://images.unsplash.com/photo-1636247499734-893da2bcfc1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZGYlMjB0b29sc3xlbnwwfHx8fDE3NjYyNTA3MTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pdf tools"
     }
   ]
 }

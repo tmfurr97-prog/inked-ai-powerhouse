@@ -12,7 +12,7 @@ import {
   SidebarGroupLabel,
 } from '@/components/ui/sidebar';
 import { AppLogo } from '@/components/app-logo';
-import { BookText, Briefcase, FileText, GraduationCap, LayoutDashboard, Mail, PenTool } from 'lucide-react';
+import { BookText, Briefcase, FileText, GraduationCap, LayoutDashboard, Mail, PenTool, SwatchBook } from 'lucide-react';
 
 export function SidebarNav() {
   const pathname = usePathname();
@@ -37,6 +37,7 @@ export function SidebarNav() {
       items: [
         { href: '/tools/summarizer', label: 'Summarizer', icon: FileText },
         { href: '/tools/forms', label: 'Form Creator', icon: Briefcase },
+        { href: '/tools/pdf', label: 'PDF & Image Tools', icon: SwatchBook },
       ],
     },
     {
