@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "novel-writer",
+      "description": "A person writing in a notebook with a laptop nearby.",
+      "imageUrl": "https://images.unsplash.com/photo-1689023542259-d1e58b32a5a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3cml0aW5nJTIwbm92ZWx8ZW58MHx8fHwxNzY2MjUwMTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "writing novel"
+    },
+    {
+      "id": "letter-writer",
+      "description": "A vintage typewriter with a piece of paper.",
+      "imageUrl": "https://images.unsplash.com/photo-1655856078476-6f2b6890edc5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsZXR0ZXIlMjB0eXBld3JpdGVyfGVufDB8fHx8MTc2NjI1MDE4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "letter typewriter"
+    },
+    {
+      "id": "summarizer",
+      "description": "Magnifying glass over a document.",
+      "imageUrl": "https://images.unsplash.com/photo-1761558794306-466448dab4bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkb2N1bWVudCUyMGFuYWx5c2lzfGVufDB8fHx8MTc2NjI1MDE4OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "document analysis"
+    },
+    {
+      "id": "form-creator",
+      "description": "A person filling out a form on a clipboard.",
+      "imageUrl": "https://images.unsplash.com/photo-1579444741963-5ae219cfe27c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxidXNpbmVzcyUyMGZvcm18ZW58MHx8fHwxNzY2MjUwMTg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "business form"
+    },
+    {
+      "id": "course-designer",
+      "description": "A digital screen showing a course structure or mind map.",
+      "imageUrl": "https://images.unsplash.com/photo-1697448524524-99416ed5dbba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb3Vyc2UlMjBkZXNpZ258ZW58MHx8fHwxNzY2MjE2MjIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "course design"
+    }
+  ]
 }
