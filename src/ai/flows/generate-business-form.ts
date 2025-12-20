@@ -53,7 +53,7 @@ const generateBusinessFormPrompt = ai.definePrompt({
   **Form Description:**
   {{{formDescription}}}
 
-  {{#if (eq formStyle "completed")}}
+  {{#if businessInformation}}
   **Task:** Generate a COMPLETED business form. Use the following information to fill in all relevant fields. The form should look like a finished document.
 
   **Business Information:**
@@ -78,7 +78,15 @@ const generateBusinessFormFlow = ai.defineFlow(
     outputSchema: GenerateBusinessFormOutputSchema,
   },
   async input => {
-    const {output} = await generateBusinessFormPrompt(input);
+    // Determine which model and prompt to use based on the formStyle.
+    const finalInput = {...input};
+    if (input.formStyle === 'fill-in') {
+      // Ensure these are not passed to the prompt for a fill-in style
+      finalInput.businessInformation = undefined;
+      finalInput.recipientInformation = undefined;
+    }
+    
+    const {output} = await generateBusinessFormPrompt(finalInput);
     return output!;
   }
 );
