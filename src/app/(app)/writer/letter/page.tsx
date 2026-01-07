@@ -25,7 +25,18 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
-type WritePersonalizedLetterInput = z.infer<typeof formSchema>;
+
+// Types moved from the flow file
+type WritePersonalizedLetterInput = {
+    tone: string;
+    purpose: string;
+    recipientName: string;
+    letterBody: string;
+};
+type WritePersonalizedLetterOutput = {
+    personalizedLetter: string;
+};
+
 
 export default function LetterWriterPage() {
   const [isLoading, setIsLoading] = useState(false);
