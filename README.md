@@ -51,4 +51,6 @@ Build: `pnpm build` -> `.next/`
 Runtime: `pnpm start` or Firebase App Hosting (see `apphosting.yaml`)
 ```
 
+Detailed version: `docs/deployment-map.md`.
+
 To get oriented, start with `src/app/page.tsx`.
